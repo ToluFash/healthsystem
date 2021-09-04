@@ -5,10 +5,6 @@ Database Server Init
 const path = require('path');
 var ObjectId = require('mongodb').ObjectId;
 var MongoClient = require('mongodb').MongoClient;
-var localdatabase = {settings: {
-    country: "Nigeria",
-        language: "English"
-    }};
 
 MongoClient.connect('mongodb+srv://healthtracker:AhzwGrC3ntKFKEb1@cluster0.ag96i.' +
     'mongodb.net/healthtracker?retryWrites=true&w=majority', async function (err, client) {
@@ -32,18 +28,18 @@ MongoClient.connect('mongodb+srv://healthtracker:AhzwGrC3ntKFKEb1@cluster0.ag96i
 
     const express = require('express');
     const app = express();
-    const port = 3000;
+    const port = 8000;
 
 
 
     var cors = require('cors');
     app.use(cors());
-    app.use(express.static('www'));
+    app.use(express.static('static'));
     app.use(express.json());
 
 
     app.get('/', function(req,res){
-        res.sendFile(path.join(__dirname, 'www/index.html'));
+        res.sendFile(path.join(__dirname, 'views/index.html'));
     });
 
     app.post('/login', function(req, res){
